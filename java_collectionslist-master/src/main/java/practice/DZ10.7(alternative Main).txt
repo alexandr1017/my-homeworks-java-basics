@@ -1,0 +1,60 @@
+package practice;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // TODO: написать консольное приложение для работы со списком дел todoList
+
+        TodoList todoList = new TodoList();
+
+        String todo;
+        int index;
+        while (true) {
+
+            printMenu();
+
+            int command = new Scanner(System.in).nextInt();
+
+            if (command == 0) {
+                break;
+            }
+
+            if (command == 2) {
+                System.out.println("Что нужно сделать?");
+                todo = new Scanner(System.in).nextLine();
+                System.out.println("Введите номер дела?");
+                index = new Scanner(System.in).nextInt();
+                if (index == 0) {
+                    todoList.add(todo);
+                } else {
+                    todoList.add(index - 1, todo);
+                }
+            } else if (command == 3) {
+                System.out.println("Что нужно сделать?");
+                todo = new Scanner(System.in).nextLine();
+                System.out.println("Введите номер дела?");
+                index = new Scanner(System.in).nextInt();
+                todoList.edit(index - 1, todo);
+            } else if (command == 4) {
+                System.out.println("Введите номер дела?");
+                index = new Scanner(System.in).nextInt();
+                todoList.delete(index - 1);
+            } else if (command == 1) {
+                todoList.getTodos();
+            } else {
+                System.out.println("Введена неверная команда");
+            }
+        }
+    }
+
+    public static void printMenu() {
+        System.out.println("Введите команду: ");
+        System.out.println("1 - LIST — выводит дела с их порядковыми номерами");
+        System.out.println("2 - ADD — добавляет дело в список");
+        System.out.println("3 - EDIT — заменяет дело с указанным номером");
+        System.out.println("4 - DELETE — удаляет дело с указанным номером");
+        System.out.println("0 - Выход");
+    }
+}
